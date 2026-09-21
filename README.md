@@ -142,6 +142,10 @@ Host checks cover SSE framing and terminal events, dialogue policy, manifest/com
 
 See [source-export validation](docs/VALIDATION.md), [architecture](docs/ARCHITECTURE.md), [dependency notes](docs/DEPENDENCIES.md), [provenance and terms](THIRD_PARTY_NOTICES.md), and [release preparation](docs/RELEASE_PREPARATION.md).
 
+## Project logs
+
+[Log 004 — “I Think It’s… Tired.”](docs/logs/004-i-think-its-tired.md) — a screenplay account of the S4’s first full local dialogue, preserved as a creative companion to the technical records.
+
 ## License
 
 SOL Node code is published under the [MIT License](LICENSE), preserving the license selected in this repository. See [LICENSE_STATUS.md](LICENSE_STATUS.md) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for scope and provenance. Third-party dependencies and upstream materials retain their own terms. No model weights, signing keys, private operational records or APK releases are included.
