@@ -1,0 +1,68 @@
+[
+  {
+    "file": "gms-base.aar",
+    "url": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-base/11.0.4/play-services-base-11.0.4.aar",
+    "sha256": "d0047219af5b2cbe4f374ded4f050d6a0a374df0b0fe915eb031ce9795ccebe2",
+    "jar": "gms-base.jar",
+    "resources": "base"
+  },
+  {
+    "file": "gms-basement.aar",
+    "url": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-basement/11.0.4/play-services-basement-11.0.4.aar",
+    "sha256": "19f86a130af6bd289c8e24873a334e9eefc6df5ce13e0487d94975d6c58f6f03",
+    "jar": "gms-basement.jar",
+    "resources": "basement"
+  },
+  {
+    "file": "play-services-tasks.aar",
+    "url": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-tasks/11.0.4/play-services-tasks-11.0.4.aar",
+    "sha256": "8dffd83760f70499f26bffba7352d9e65894475ec32ac2ada1bd832ccc810b25",
+    "jar": "play-services-tasks.jar",
+    "resources": null
+  },
+  {
+    "file": "support-compat.aar",
+    "url": "https://dl.google.com/dl/android/maven2/com/android/support/support-compat/25.2.0/support-compat-25.2.0.aar",
+    "sha256": "5a7b6e18903458e3a561df24033476518f998cd7ae1ed747c2874e0685b999c7",
+    "jar": "support-compat.jar",
+    "resources": null
+  },
+  {
+    "file": "support-core-ui.aar",
+    "url": "https://dl.google.com/dl/android/maven2/com/android/support/support-core-ui/25.2.0/support-core-ui-25.2.0.aar",
+    "sha256": "cf3c75fd9a1b1dcbb6042d610515cd79cd0d65d3efd272d2250727187e8ca2ed",
+    "jar": "support-core-ui.jar",
+    "resources": null
+  },
+  {
+    "file": "support-core-utils.aar",
+    "url": "https://dl.google.com/dl/android/maven2/com/android/support/support-core-utils/25.2.0/support-core-utils-25.2.0.aar",
+    "sha256": "e0561cc9d00ae125d9e1ad8985d4639e68ce8399ae973e91674e97faaf658243",
+    "jar": "support-core-utils.jar",
+    "resources": null
+  },
+  {
+    "file": "support-fragment.aar",
+    "url": "https://dl.google.com/dl/android/maven2/com/android/support/support-fragment/25.2.0/support-fragment-25.2.0.aar",
+    "sha256": "f12633dd4d418a4edeb5ecf3bf4393edd0770b1eaa5d1ee3078c5e7c174868fd",
+    "jar": "support-fragment.jar",
+    "resources": null
+  },
+  {
+    "file": "support-media-compat.aar",
+    "url": "https://dl.google.com/dl/android/maven2/com/android/support/support-media-compat/25.2.0/support-media-compat-25.2.0.aar",
+    "sha256": "e9f820d08e6a5735cfdb2a7d81d3c86b4a31897ac1edaeb55c7de06bcb370343",
+    "jar": "support-media-compat.jar",
+    "resources": null
+  },
+  {
+    "file": "okhttp-3.12.13.jar",
+    "url": "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp/3.12.13/okhttp-3.12.13.jar",
+    "sha256": "508234e024ef7e270ab1a6d5b356f5b98e786511239ca986d684fd1e2cf7bc82"
+  },
+  {
+    "file": "okio-1.15.0.jar",
+    "url": "https://repo.maven.apache.org/maven2/com/squareup/okio/okio/1.15.0/okio-1.15.0.jar",
+    "sha256": "693fa319a7e8843300602b204023b7674f106ebcb577f2dd5807212b66118bd2"
+  }
+]

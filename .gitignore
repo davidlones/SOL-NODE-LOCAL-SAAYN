@@ -1,0 +1,14 @@
+/build/
+/artifacts/
+/vendor/
+/assets/saayn_s4_native
+*.jks
+*.keystore
+*.apk
+*.idsig
+*.npy
+__pycache__/
+*.pyc
+.env
+.env.*
+local.properties
