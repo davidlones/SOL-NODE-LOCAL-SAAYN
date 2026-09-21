@@ -16,4 +16,4 @@ Passed locally in this separate checkout:
 
 The build used no configured public API origin. It did not contact the production SOL chat endpoint or install to a phone. Download caching was used because a fresh Maven transfer was slow; this is not a claim of a completed uncached network bootstrap. Legacy dependency debug-table warnings from D8 remain in the build log.
 
-The GitHub workflow has been prepared but has not run remotely. Physical-device measurements and UI screenshots in the README describe the preceding development installation, not a new acceptance run of the source export.
+GitHub host checks also [passed on the initial publication commit](https://github.com/davidlones/SOL-NODE-LOCAL-SAAYN/actions/runs/35667386803) (`bdb168e`). The workflow tests host behavior and export boundaries; it does not build or run an Android APK. Physical-device measurements and UI screenshots in the README describe the preceding development installation, not a new acceptance run of the source export.
