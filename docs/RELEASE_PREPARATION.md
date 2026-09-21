@@ -1,13 +1,17 @@
-# GitHub preparation
+# Source publication
+
+Destination: [davidlones/SOL-NODE-LOCAL-SAAYN](https://github.com/davidlones/SOL-NODE-LOCAL-SAAYN), public, main branch.
 
 This checkout is a sanitized source export of SOL Node 0.3.0. It excludes operational transcripts, device serials, household network addresses, SSH aliases, BlueBubbles automation, personal filesystem locations, APKs, private signing keys and model tensors.
 
-Before a public release:
+The repository owner's initial commit and MIT license are preserved. Third-party provenance and dependency terms are documented separately. Local validation is recorded in [VALIDATION.md](VALIDATION.md); GitHub Actions runs host checks on pushes and pull requests.
 
-- Confirm destination repository and visibility.
-- Select a license for newly authored code and resolve upstream/model/dependency notice requirements for the intended distribution.
-- Review the source export and test results.
-- Choose a release-signing identity before distributing upgradeable APKs. The provided script only produces development builds.
-- Retain the documented distinction between tested source/runtime behavior, model quality, and unfinished remote-node authority.
+Before distributing binaries:
 
-No repository creation, push, GitHub release, model upload or APK publication is implied by preparing this checkout.
+- Choose a release-signing identity; the provided script produces development builds.
+- Complete the dependency notice review for the intended binary distribution.
+- Configure and verify the intended public SOL endpoint.
+- Perform device acceptance testing on that exact APK.
+- Retain the distinction between tested runtime behavior, model quality and unfinished remote-node authority.
+
+This publication contains source and recorded UI evidence. It does not publish an APK or model weights, or update an installed device.

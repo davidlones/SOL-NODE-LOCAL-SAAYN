@@ -1,4 +1,6 @@
-# SOL Node for Android
+# SOL-NODE-LOCAL-SAAYN
+
+SOL Node for Android
 
 An experimental SOL client and local compute node for **Android 4.3 / API 18**. Built with classic Java Views and tested on a Samsung SM-S975L (ARMv7).
 
@@ -142,4 +144,4 @@ See [source-export validation](docs/VALIDATION.md), [architecture](docs/ARCHITEC
 
 ## License
 
-A project license has not yet been selected. See [LICENSE_STATUS.md](LICENSE_STATUS.md). Third-party dependencies and upstream materials retain their own terms. No model weights, signing keys, private operational records or APK releases are included in this source preparation.
+SOL Node code is published under the [MIT License](LICENSE), preserving the license selected in this repository. See [LICENSE_STATUS.md](LICENSE_STATUS.md) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for scope and provenance. Third-party dependencies and upstream materials retain their own terms. No model weights, signing keys, private operational records or APK releases are included.
