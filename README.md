@@ -36,12 +36,12 @@ Prerequisites:
 ```sh
 export SOL_ANDROID_SDK="$ANDROID_SDK_ROOT"
 export SOL_ZIG=zig
-# Optional: an HTTPS origin implementing the SOL contract below.
+# Optional override; defaults to https://sol.system42.one.
 export SOL_API_BASE=https://your-sol.example
 ./build.sh
 ```
 
-Omit `SOL_API_BASE` for a local-only build. The public client then reports that no endpoint is configured. No personal production server is selected by default.
+By default, public chat connects to **https://sol.system42.one**, using `POST /api/chat`. Set `SOL_API_BASE` to another HTTPS origin implementing the same contract to override it. For a local-only build, explicitly set `SOL_API_BASE=""`; the public client then reports that no endpoint is configured.
 
 The build fetches dependencies from Google Maven and Maven Central. Complete archive SHA256 hashes are pinned in `dependencies.lock.json` and checked **before** extracting code or resources. Dependencies, generated native binaries, APKs and signing material are not committed.
 
@@ -130,7 +130,7 @@ These are recorded physical-device samples from the development implementation, 
 
 All alternating baseline/candidate/candidate/baseline native benchmark samples matched token IDs and winning logits exactly. Broader numerical/tokenizer equivalence remains to be tested. Cold public model startup previously caused EOF/disconnects; one successful generation does not resolve all startup reliability issues.
 
-The public-source export adds portable build configuration and is build-checked separately. It has not replaced the tested installation on the phone.
+The public-source build was subsequently installed as an in-place S4 upgrade using the existing private signing key. See the [endpoint and optimization validation](docs/ENDPOINT_VALIDATION.md) for this later test and its limits.
 
 ## Tests
 
@@ -141,6 +141,12 @@ The public-source export adds portable build configuration and is build-checked 
 Host checks cover SSE framing and terminal events, dialogue policy, manifest/component boundaries, and current-source numerical linear-layer parity. CI runs these checks without a phone, model tensors, API credentials, or production services. Host tests do not replace physical-device acceptance.
 
 See [source-export validation](docs/VALIDATION.md), [architecture](docs/ARCHITECTURE.md), [dependency notes](docs/DEPENDENCIES.md), [provenance and terms](THIRD_PARTY_NOTICES.md), and [release preparation](docs/RELEASE_PREPARATION.md).
+
+## Client and server updates
+
+Public chat defaults to `https://sol.system42.one`. The client permits up to 240 seconds between network reads and 600 seconds for the whole call, retaining cancellation and no automatic retries. Streaming reuses a per-request history snapshot instead of reparsing saved conversations for every chunk.
+
+The existing SOL server also received a bounded supplemental-query cache. Its [scoped patch and regression check](server-patches/README.md) are included separately; Android builds do not require applying that patch.
 
 ## Project logs
 

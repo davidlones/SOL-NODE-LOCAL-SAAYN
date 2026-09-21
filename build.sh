@@ -17,7 +17,7 @@ python3 - <<'PY'
 import json,os
 from pathlib import Path
 from urllib.parse import urlsplit
-base=os.environ.get('SOL_API_BASE','').rstrip('/')
+base=os.environ.get('SOL_API_BASE','https://sol.system42.one').rstrip('/')
 if base:
  p=urlsplit(base)
  if p.scheme!='https' or not p.hostname or p.username or p.password or p.query or p.fragment or p.path:

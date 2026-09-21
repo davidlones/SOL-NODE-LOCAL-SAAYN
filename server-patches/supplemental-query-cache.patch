@@ -1,0 +1,60 @@
+--- a/bin/sol_chat_api.py
++++ b/bin/sol_chat_api.py
+@@ -21,7 +21,7 @@
+ import urllib.error
+ import urllib.parse
+ import urllib.request
+-from collections import defaultdict
++from collections import OrderedDict, defaultdict
+ from datetime import datetime, timezone
+ from http import HTTPStatus
+ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+@@ -3149,6 +3149,14 @@
+     return _sanitize_supplemental_query(" ".join(picked[:8]), original_query=user_text)
+
+
++# Cache only the generated search query, never retrieval results or live context.
++# Exact model/prompt/settings keys prevent reuse across different grounding inputs.
++_SUPPLEMENTAL_QUERY_CACHE: OrderedDict[str, tuple[float, str | None]] = OrderedDict()
++_SUPPLEMENTAL_QUERY_CACHE_LOCK = threading.Lock()
++_SUPPLEMENTAL_QUERY_CACHE_TTL_S = 300.0
++_SUPPLEMENTAL_QUERY_CACHE_LIMIT = 128
++
++
+ def generate_supplemental_retrieval_query(
+     *,
+     user_text: str,
+@@ -3189,6 +3197,21 @@
+             ),
+         },
+     ]
++    cache_key = hashlib.sha256(json.dumps({
++        "messages": prompt_messages,
++        "profile": backend_profile,
++        "base_url": str(backend["base_url"]),
++        "model": str(backend["model_id"]),
++        "max_tokens": SUPPLEMENTAL_KNOWLEDGE_MODEL_MAX_TOKENS,
++        "temperature": 0.1, "top_p": 0.9,
++    }, sort_keys=True).encode("utf-8")).hexdigest()
++    with _SUPPLEMENTAL_QUERY_CACHE_LOCK:
++        cached = _SUPPLEMENTAL_QUERY_CACHE.get(cache_key)
++        if cached is not None and time.monotonic() - cached[0] < _SUPPLEMENTAL_QUERY_CACHE_TTL_S:
++            _SUPPLEMENTAL_QUERY_CACHE.move_to_end(cache_key)
++            log_event(f"{LOG_PREFIX}.supplemental_query.cache_hit", profile=backend_profile)
++            return cached[1] or _fallback_supplemental_retrieval_query(user_text=query_text, retrieval_meta=retrieval_meta)
++        _SUPPLEMENTAL_QUERY_CACHE.pop(cache_key, None)
+     candidate = model_chat_once(
+         prompt_messages,
+         base_url=str(backend["base_url"]),
+@@ -3198,6 +3221,11 @@
+         max_tokens=SUPPLEMENTAL_KNOWLEDGE_MODEL_MAX_TOKENS,
+     )
+     sanitized = _sanitize_supplemental_query(candidate, original_query=query_text)
++    with _SUPPLEMENTAL_QUERY_CACHE_LOCK:
++        _SUPPLEMENTAL_QUERY_CACHE[cache_key] = (time.monotonic(), sanitized)
++        _SUPPLEMENTAL_QUERY_CACHE.move_to_end(cache_key)
++        while len(_SUPPLEMENTAL_QUERY_CACHE) > _SUPPLEMENTAL_QUERY_CACHE_LIMIT:
++            _SUPPLEMENTAL_QUERY_CACHE.popitem(last=False)
+     if sanitized:
+         return sanitized
+     return _fallback_supplemental_retrieval_query(user_text=query_text, retrieval_meta=retrieval_meta)

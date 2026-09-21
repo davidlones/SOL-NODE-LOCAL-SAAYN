@@ -22,7 +22,7 @@ public final class SolApiClient {
 
   OkHttpClient client=new OkHttpClient.Builder().sslSocketFactory(new Tls12(trust),trust)
    .connectionSpecs(Arrays.asList(new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS).tlsVersions(TlsVersion.TLS_1_2).build()))
-   .protocols(Arrays.asList(Protocol.HTTP_1_1)).callTimeout(180,TimeUnit.SECONDS).connectTimeout(15,TimeUnit.SECONDS).readTimeout(90,TimeUnit.SECONDS).retryOnConnectionFailure(false).followRedirects(false).followSslRedirects(false).build();
+   .protocols(Arrays.asList(Protocol.HTTP_1_1)).callTimeout(600,TimeUnit.SECONDS).connectTimeout(15,TimeUnit.SECONDS).readTimeout(240,TimeUnit.SECONDS).retryOnConnectionFailure(false).followRedirects(false).followSslRedirects(false).build();
   JSONObject j=new JSONObject();j.put("message",message);j.put("session",session);j.put("profile",profile);j.put("persist",persist);j.put("stream",true);j.put("allow_actions",false);j.put("allow_fallback_answer",false);
   Request request=new Request.Builder().url(BASE+"/api/chat").header("Accept","text/event-stream").header("User-Agent","SOLNode/0.3 Android18").post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"),j.toString())).build();
   Call call=client.newCall(request);active=call;if(cancelled)call.cancel();
